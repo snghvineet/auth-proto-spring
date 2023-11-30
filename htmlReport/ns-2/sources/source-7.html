@@ -1,0 +1,129 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > JwtToPrincipal</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.authprototype.security</a>
+</div>
+
+<h1>Coverage Summary for Class: JwtToPrincipal (com.example.authprototype.security)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">JwtToPrincipal</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.authprototype.security;
+&nbsp;
+&nbsp;import com.auth0.jwt.interfaces.Claim;
+&nbsp;import com.auth0.jwt.interfaces.DecodedJWT;
+&nbsp;import org.springframework.security.core.authority.SimpleGrantedAuthority;
+&nbsp;import org.springframework.stereotype.Component;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.UUID;
+&nbsp;
+&nbsp;@Component
+<b class="nc">&nbsp;public class JwtToPrincipal {</b>
+&nbsp;    public UserPrincipal convert(DecodedJWT jwt) {
+&nbsp;        return UserPrincipal
+<b class="nc">&nbsp;                .builder()</b>
+<b class="nc">&nbsp;                .userId(UUID.fromString(jwt.getSubject()))</b>
+<b class="nc">&nbsp;                .email(jwt.getClaim(&quot;e&quot;).toString())</b>
+<b class="nc">&nbsp;                .authorities(extractGrantedAuthoritiesFromClaim(jwt.getClaim(&quot;a&quot;)))</b>
+<b class="nc">&nbsp;                .build();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private List&lt;SimpleGrantedAuthority&gt; extractGrantedAuthoritiesFromClaim(Claim claim) {
+<b class="nc">&nbsp;        if (claim.isNull() || claim.isMissing()) return List.of();</b>
+<b class="nc">&nbsp;        return claim.asList(SimpleGrantedAuthority.class);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-29 23:53</div>
+</div>
+</body>
+</html>
